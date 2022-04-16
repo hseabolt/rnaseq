@@ -392,6 +392,7 @@ workflow RNASEQ {
         ch_samtools_flagstat = ALIGN_HISAT2.out.flagstat
         ch_samtools_idxstats = ALIGN_HISAT2.out.idxstats
         ch_hisat2_multiqc    = ALIGN_HISAT2.out.summary
+        ch_hisat2_splicing   = ALIGN_HISAT2.out.splice_sites
         if (params.bam_csi_index) {
             ch_genome_bam_index = ALIGN_HISAT2.out.csi
         }

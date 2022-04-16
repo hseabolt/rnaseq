@@ -31,6 +31,7 @@ workflow ALIGN_HISAT2 {
     orig_bam = HISAT2_ALIGN.out.bam           // channel: [ val(meta), bam   ]
     summary  = HISAT2_ALIGN.out.summary       // channel: [ val(meta), log   ]
     fastq    = HISAT2_ALIGN.out.fastq         // channel: [ val(meta), fastq ]
+    splice_sites = HISAT2_ALIGN.out.splice_sites         // channel: [ val(meta), splice_sites ]
 
     bam      = BAM_SORT_SAMTOOLS.out.bam      // channel: [ val(meta), [ bam ] ]
     bai      = BAM_SORT_SAMTOOLS.out.bai      // channel: [ val(meta), [ bai ] ]

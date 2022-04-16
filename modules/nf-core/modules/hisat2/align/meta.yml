@@ -48,6 +48,10 @@ output:
       type: file
       description: Aligment log
       pattern: "*.log"
+  - splice_sites:
+      type: file
+      description: List of novel splicing sites detected during alignment
+      pattern: "*.novel_splice_sites.tab"
   - versions:
       type: file
       description: File containing software versions

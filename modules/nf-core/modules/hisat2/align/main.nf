@@ -15,10 +15,11 @@ process HISAT2_ALIGN {
     path  splicesites
 
     output:
-    tuple val(meta), path("*.bam")                   , emit: bam
-    tuple val(meta), path("*.log")                   , emit: summary
-    tuple val(meta), path("*fastq.gz"), optional:true, emit: fastq
-    path  "versions.yml"                             , emit: versions
+    tuple val(meta), path("*.bam")                     , emit: bam
+    tuple val(meta), path("*.log")                     , emit: summary
+    tuple val(meta), path("*.novel_splice_sites.tab")  , emit: splice_sites 
+    tuple val(meta), path("*fastq.gz"), optional:true  , emit: fastq
+    path  "versions.yml"                               , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -44,6 +45,7 @@ process HISAT2_ALIGN {
             $strandedness \\
             --known-splicesite-infile $splicesites \\
             --summary-file ${prefix}.hisat2.summary.log \\
+            --novel-splicesite-outfile ${prefix}.hisat2.novel_splice_sites.tab \\
             --threads $task.cpus \\
             $seq_center \\
             $unaligned \\
@@ -67,6 +69,7 @@ process HISAT2_ALIGN {
             $strandedness \\
             --known-splicesite-infile $splicesites \\
             --summary-file ${prefix}.hisat2.summary.log \\
+            --novel-splicesite-outfile ${prefix}.hisat2.novel_splice_sites.tab \\
             --threads $task.cpus \\
             $seq_center \\
             $unaligned \\
